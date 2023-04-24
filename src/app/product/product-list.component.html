@@ -1,0 +1,40 @@
+<div class='card'>
+  <div class='card-header text-start'> {{productList}} </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2 text-start">Filter by: </div>
+      <div class="col-md-4 text-start"><input type="text"/></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+          <h4 class="text-start">Filtered by: </h4>
+      </div>
+    </div>
+
+    <div class="table-responsive row">
+      <table class="table" *ngIf="products.length">
+        <thead>
+          <th>
+            <button type="button" class="btn btn-primary">Show Image</button>
+          </th>
+          <th>Product</th>
+          <th>Code</th>
+          <th>Available</th>
+          <th>Price</th>
+          <th>5 Star Rating</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td></td>
+            <td>{{product.productName}}</td>
+            <td>{{product.productCode}}</td>
+            <td>{{product.releaseDate}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.starRating}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
