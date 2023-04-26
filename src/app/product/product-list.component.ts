@@ -9,7 +9,7 @@ import products from "../../api/products/products.json"
 })
 export class ProductListComponent implements OnInit{
   ngOnInit(): void {
-
+    this.productsFiltered = this.products
   }
 
   public productList: String = "Product List";
@@ -18,7 +18,21 @@ export class ProductListComponent implements OnInit{
   public imageMagine: number  = 2;
   public showImage: boolean = true;
   public buttonLable: string = this.showImage? "Hide Image" : "Show Image";
-  public productFilter: string = 'cart';
+  private _productFilter: string = 'cart';
+  public productsFiltered ?: Product[]
+
+  public get productFilter(): string {
+    return this._productFilter;
+  }
+  public set productFilter(value: string) {
+    this._productFilter = value;
+    this.productsFiltered = []
+    this.products.forEach(element => {
+      if(element.productName.toLowerCase().includes(this._productFilter.toLocaleLowerCase())){
+        this.productsFiltered?.push(element);
+      }
+    });
+  }
 
 
   public toggleImage(){
