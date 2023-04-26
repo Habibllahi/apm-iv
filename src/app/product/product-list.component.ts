@@ -40,5 +40,10 @@ export class ProductListComponent implements OnInit{
       this.buttonLable = this.showImage? "Hide Image" : "Show Image";
   }
 
+  public notify(value: string): void{
+    console.log(value);
+    
+  }
+
 
 }
