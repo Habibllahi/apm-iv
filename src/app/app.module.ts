@@ -6,6 +6,7 @@ import { ProductListComponent } from './product/product-list.component';
 import { FormsModule } from '@angular/forms';
 import { ConvertToSpace } from './pipe/convert-to-space.pipe';
 import { StartComponent } from './shared/star.component';
+import { ProductService } from './product/product.service';
 
 @NgModule({
   declarations: [

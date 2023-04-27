@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { Product } from "src/types/Product";
-import products from "../../api/products/products.json"
+
+import { ProductService } from "./product.service";
 
 @Component({
   templateUrl: "./product-list.component.html",
@@ -8,27 +9,31 @@ import products from "../../api/products/products.json"
   styleUrls:['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit{
-  ngOnInit(): void {
-    this.productsFiltered = this.products
-  }
 
   public productList: String = "Product List";
-  public products: Product[] = products
+  public products?: Product[];
   public imageWeight: number = 50;
   public imageMagine: number  = 2;
   public showImage: boolean = true;
   public buttonLable: string = this.showImage? "Hide Image" : "Show Image";
-  private _productFilter: string = 'cart';
+  private _productFilter?: string;
   public productsFiltered ?: Product[]
 
-  public get productFilter(): string {
+  constructor (private productService: ProductService){}
+  ngOnInit(): void {
+    this.products = this.productService.getProducts();
+    this.productsFiltered = this.products
+  }
+
+
+  public get productFilter(): string | undefined {
     return this._productFilter;
   }
-  public set productFilter(value: string) {
+  public set productFilter(value: string | undefined) {
     this._productFilter = value;
     this.productsFiltered = []
-    this.products.forEach(element => {
-      if(element.productName.toLowerCase().includes(this._productFilter.toLocaleLowerCase())){
+    this.products?.forEach(element => {
+      if(element.productName.toLowerCase().includes(this._productFilter!.toLocaleLowerCase())){
         this.productsFiltered?.push(element);
       }
     });
