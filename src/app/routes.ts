@@ -5,24 +5,20 @@ import { WelcomeComponent } from "./home/welcome.component";
 
 export const routes: Routes = [
     {
-        path: 'products', 
+        path: 'products',
         component: ProductListComponent
     },
     {
-        path: 'products/:id', 
+        path: 'products/:id',
         component: ProductDetailComponent
     },
     {
-        path: 'welcome', 
+        path: 'welcome',
         component: WelcomeComponent
     },
     {
-        path: 'details',
-        component: ProductDetailComponent
-    },
-    {
-        path: '', 
-        redirectTo: 'welcome', 
+        path: '',
+        redirectTo: 'welcome',
         pathMatch: 'full'
     }
   ]

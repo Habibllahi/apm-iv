@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Product } from "src/types/Product";
 import products from "../../api/products/products.json"
 import { HttpClient } from "@angular/common/http";
-import { Observable, catchError } from "rxjs";
+import { Observable, catchError, filter, map } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -25,7 +25,11 @@ export class ProductService{
             return caught;
         }));
     }
-    
+
+    public getProductById(id: number): Observable<Product | undefined>{
+      return this.getProducts().pipe(map((products) => products.find(product => product.productId === id)));
+    }
+
 
     public get url(): string {
         return this._url;
