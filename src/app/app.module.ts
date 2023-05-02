@@ -8,13 +8,15 @@ import { ConvertToSpace } from './pipe/convert-to-space.pipe';
 import { StartComponent } from './shared/star.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
+import { ProductDetailComponent } from './product/product-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ConvertToSpace,
-    StartComponent
+    StartComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,6 @@ import { routes } from './routes';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  
+export class AppModule {
+
 }

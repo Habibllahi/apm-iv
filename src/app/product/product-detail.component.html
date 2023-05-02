@@ -1,5 +1,7 @@
 <div class="card">
     <div class="card-header">
-        {{pageTitle}}
+        <div *ngIf="product">
+          {{product.description}}
+        </div>
     </div>
 </div>
