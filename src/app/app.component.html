@@ -1,4 +1,8 @@
 <div style="text-align:center">
-  <h1 class="text-start">{{title}}</h1>
-  <pm-products></pm-products>
+  <div class="row">
+    <h1 class="text-start col-sm-6">{{title}}</h1>
+    <button type="button" class="btn btn-primary col-sm-2 m-4" ><a [routerLink]="['/welcome']">Home</a></button>
+    <button type="button" class="btn btn-primary col-sm-2 m-4"><a [routerLink]="['/products']">ProductList</a></button>
+  </div>
+  <router-outlet></router-outlet>
 </div>

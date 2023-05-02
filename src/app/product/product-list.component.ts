@@ -1,14 +1,15 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from "@angular/core";
 import { Product } from "src/types/Product";
 
 import { ProductService } from "./product.service";
+import { Subscription } from "rxjs";
 
 @Component({
   templateUrl: "./product-list.component.html",
   selector: "pm-products",
   styleUrls:['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit, OnDestroy{
 
   public productList: String = "Product List";
   public products?: Product[];
@@ -17,11 +18,20 @@ export class ProductListComponent implements OnInit{
   public showImage: boolean = true;
   public buttonLable: string = this.showImage? "Hide Image" : "Show Image";
   private _productFilter?: string;
-  public productsFiltered ?: Product[]
+  public productsFiltered ?: Product[];
+  private httpSubscription?: Subscription;
+  private errorMessage?: string;
 
   constructor (private productService: ProductService){}
+  ngOnDestroy(): void {
+    this.httpSubscription?.unsubscribe();
+  }
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
+    this.httpSubscription = this.productService.getProducts()
+    .subscribe({
+      next: (value: Product[])=> this.products = value, 
+      error: error => this.errorMessage = error
+    });
     this.productsFiltered = this.products
   }
 
@@ -46,8 +56,7 @@ export class ProductListComponent implements OnInit{
   }
 
   public notify(value: string): void{
-    console.log(value);
-    
+    console.log(value);  
   }
 
 

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {HttpClientModule} from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product/product-list.component';
 import { FormsModule } from '@angular/forms';
 import { ConvertToSpace } from './pipe/convert-to-space.pipe';
 import { StartComponent } from './shared/star.component';
-import { ProductService } from './product/product.service';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,12 @@ import { ProductService } from './product/product.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
