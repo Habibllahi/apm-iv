@@ -4,25 +4,20 @@ import { ConvertToSpace } from "../pipe/convert-to-space.pipe";
 import { StartComponent } from "../shared/star.component";
 import { ProductDetailComponent } from "./product-detail.component";
 import { ProductListComponent } from "./product-list.component";
-import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { productModuleRoute } from "./product.module.routes";
+import { SharedModule } from "../shared/share.module";
 
 @NgModule({
     declarations: [   
         AppComponent,
         ProductListComponent,
         ConvertToSpace,
-        StartComponent,
         ProductDetailComponent
     ],
     imports:[    
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        RouterModule.forRoot(productModuleRoute)],
+        SharedModule,
+        RouterModule.forChild(productModuleRoute)],
     exports: [
         AppComponent,
         ProductListComponent,

@@ -13,9 +13,6 @@ import { ProductModule } from './product/product.module';
   ],
   imports: [
     ProductModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
     RouterModule.forRoot(productModuleRoute)
   ],
   bootstrap: [AppComponent]
