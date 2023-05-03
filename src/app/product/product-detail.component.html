@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-header text-start">
-        {{pageTitle}}
+        {{pageTitle + ": "+ product?.productName}}
     </div>
-    <div *ngIf="product" class="row">
+    <div  class="card-body" *ngIf="product" class="row">
       <div class="col-sm-6">
         <div class="row">
           <p class="col-sm-4 text-center">Product Name</p>
@@ -25,4 +25,8 @@
         <img [src]="product.imageUrl" alt="">
       </div>
     </div>
+
+    <div class="card-footer text-start">
+      <button class="btn btn-primary" (click)="onBack()">{{backButtonText}}</button>
+  </div>
 </div>

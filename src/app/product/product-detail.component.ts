@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ProductService } from "./product.service";
 import { Product } from "src/types/Product";
-import { Observable, Subscription, SubscriptionLike } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: "pm-product-detail",
@@ -11,10 +11,13 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ProductDetailComponent implements OnInit, OnDestroy{
 
+
+  public backButtonText: string = "<< Back"
     public pageTitle: string = 'product details'
     public product?: Product;
     public sub?: Subscription
-    constructor(private activatedRoute: ActivatedRoute, private productService: ProductService){}
+    constructor(private activatedRoute: ActivatedRoute, private route: Router,
+      private productService: ProductService){}
     ngOnDestroy(): void {
       this.sub?.unsubscribe();
     }
@@ -30,5 +33,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy{
       const productId = this.activatedRoute.snapshot.paramMap.get('id')
       return Number(productId);
     }
+
+    public onBack(): void {
+      this.route.navigate(['/products'])
+      }
 
 }
