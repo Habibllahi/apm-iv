@@ -1,7 +1,28 @@
 <div class="card">
-    <div class="card-header">
-        <div *ngIf="product">
-          {{product.description}}
+    <div class="card-header text-start">
+        {{pageTitle}}
+    </div>
+    <div *ngIf="product" class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <p class="col-sm-4 text-center">Product Name</p>
+          <p class="col-sm-8 text-start">{{product.productName}}</p>
         </div>
+        <div class="row">
+          <p class="col-sm-4 text-center">product Code</p>
+          <p class="col-sm-8 text-start">{{product.productCode}}</p>
+        </div>
+        <div class="row">
+          <p class="col-sm-4 text-center">product Price</p>
+          <p class="col-sm-8 text-start">${{product.price}}</p>
+        </div>
+        <div class="row">
+          <p class="col-sm-4 text-center">Star Rating</p>
+          <pm-star class="col-sm-8 text-start" [rating]="product.starRating">${{product.price}}</pm-star>
+        </div>
+      </div>
+      <div class="col-sm-6 side-image">
+        <img [src]="product.imageUrl" alt="">
+      </div>
     </div>
 </div>
